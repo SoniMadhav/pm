@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Paytm — Ticket</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="app-top">
+        <div class="left">
+            <img src="img/paytm-logo.svg" alt="Paytm" class="logo" onerror="this.style.display='none'">
+            <span class="top-title">Paytm</span>
+        </div>
+        <div>
+            <button id="helpBtn" class="icon-btn">Help</button>
+        </div>
+    </header>
+
+    <main id="app" class="app-shell">
+        <!-- SPA will render here -->
+        <section id="purchaseView" class="purchase-card">
+            <h1 class="card-title">Buy Ticket</h1>
+            <div class="tabs">
+                <button class="tab active">BRTS</button>
+                <button class="tab">AMTS</button>
+            </div>
+
+            <form id="ticketForm" class="form-grid" onsubmit="return false">
+                <label>From<input id="from" placeholder="Start location" required></label>
+                <label>To<input id="to" placeholder="Destination" required></label>
+                <label>Passengers
+                    <select id="passenger">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                </label>
+                <label>When<input id="when" type="datetime-local"></label>
+                <label>Fare (per pax)
+                    <input id="amount" type="number" min="1" placeholder="20">
+                </label>
+                <label>Validity
+                    <select id="validity">
+                        <option value="15">15 min</option>
+                        <option value="30">30 min</option>
+                        <option value="120" selected>2 hours</option>
+                    </select>
+                </label>
+
+                <div class="actions-inline">
+                    <button id="buyBtn" class="primary" disabled>Pay ₹<span id="btnAmount">20</span></button>
+                </div>
+            </form>
+
+            <aside class="summary">
+                <div class="summary-heading">Summary</div>
+                <div class="summary-row"><span>Route</span><strong id="summaryRoute">—</strong></div>
+                <div class="summary-row"><span>Passengers</span><strong id="summaryPax">1</strong></div>
+                <div class="summary-row"><span>Amount</span><strong id="summaryAmount">₹20</strong></div>
+            </aside>
+        </section>
+
+        <section id="ticketView" class=" ticket-wrap" aria-hidden="true">
+            <div class="ticket-card" id="ticketCard">
+                <div class="ticket-top">
+                    <div class="operator">Paytm</div>
+                    <div id="status" class="status">Valid</div>
+                </div>
+                <div class="ticket-hero">
+                    <div class="route" id="route">—</div>
+                    <div class="passenger" id="passengerCount">1 Adult</div>
+                    <div id="qrcode" class="qrcode-large"></div>
+                    <div class="timer-box">
+                        <div class="valid-label">Validity</div>
+                        <div id="countdown" class="timer">02:00:00</div>
+                    </div>
+                    <div class="details">
+                        <div class="item"><span class="small-label">Order</span>
+                            <div id="orderId" class="value">-</div>
+                        </div>
+                        <div class="item"><span class="small-label">Order Item ID</span>
+                            <div id="orderItemId" class="value">-</div>
+                        </div>
+                        <div class="item"><span class="small-label">Transaction</span>
+                            <div id="txnId" class="value">-</div>
+                        </div>
+                        <div class="item"><span class="small-label">Fare</span>
+                            <div id="fareDisplay" class="value">₹0</div>
+                        </div>
+                        <div class="item"><span class="small-label">Issued</span>
+                            <div id="issuedAtSmall" class="value">-</div>
+                        </div>
+                        <div class="item"><span class="small-label">Validity</span>
+                            <div id="validityDisplay" class="value">-</div>
+                        </div>
+                        <div class="item"><span class="small-label">When</span>
+                            <div id="whenDisplay" class="value">-</div>
+                        </div>
+                        <div class="item"><button id="back" class="secondary">Back</button></div>
+                    </div>
+                    <div class="trip-details" aria-hidden="true">
+                        <div class="trip-center">Trip: Route info • Vehicle: BRTS • Seat: General</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
